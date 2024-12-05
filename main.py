@@ -30,10 +30,10 @@ clock = pygame.time.Clock()
 
 # Game initialization.
 maker = ImageMaker(shape=SHAPE)
-maker.set_image(r'images\1.jpg')
+maker.set_image(r'images\2.png')
 puzzle = PuzzleSurface(zone, shape=SHAPE)
 operators = Operators(puzzle, maker, zone)
-widgets = Widgets(screen, r'fonts\REEJI.ttf')
+widgets = Widgets(screen, r'fonts\ShuHei.otf')
 
 # Draw basic widgets.
 screen.fill('white')
