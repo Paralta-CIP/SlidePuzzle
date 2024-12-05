@@ -5,6 +5,10 @@ import random
 
 
 class Puzzle:
+    """
+    The whole puzzle.
+    """
+
     def __init__(self, shape):
         self.shape = shape
         self.map = None
@@ -29,14 +33,21 @@ class Puzzle:
         for r, c in product(range(self.shape), repeat=2):
             if (r != self.shape - 1) or (c != self.shape - 1):
                 # noinspection PyTypeChecker
-                pieces[r][c] = Piece((r, c))
+                pieces[r][c] = self._create_piece((r, c))
 
         self.map = pieces
         self._shuffle()
 
+    @staticmethod
+    def _create_piece(pos: tuple[int, int]):
+        """
+        Seperated for overriding.
+        """
+        return Piece(pos)
+
     def _shuffle(self):
         """
-        Shuffle the puzzle.
+        Shuffle the puzzle by sliding.
         """
         time = 30
         exclude = None
@@ -83,7 +94,7 @@ class Puzzle:
 
     def click(self, pos: tuple[int, int]):
         """
-        Return bool is used to shuffle.
+        Check and slide the puzzle.
         """
         r, c = pos[0], pos[1]
         if r != 0 and not self[r - 1][c]:
@@ -94,11 +105,11 @@ class Puzzle:
             self[r][c - 1], self[r][c] = self[r][c], self[r][c - 1]
         elif c != self.shape - 1 and not self[r][c + 1]:
             self[r][c + 1], self[r][c] = self[r][c], self[r][c + 1]
-        else:
-            return False
-        return True
 
     def complete(self):
+        """
+        Check if the puzzle is completed.
+        """
         for r, c in product(range(self.shape), repeat=2):
             if self[r][c] and self[r][c].pos != (r, c):
                 return False

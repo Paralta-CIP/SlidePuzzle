@@ -1,10 +1,10 @@
 import sys
 import pygame
 from pygame.locals import *
-from front.puzzle_surface import PuzzleSurface
+from frontend.puzzle_surface import PuzzleSurface
 from logic.image_maker import ImageMaker
-from front.widgets import Widgets
-from front.operators import Operators
+from frontend.widgets import Widgets
+from frontend.operators import Operators
 
 
 FPS = 10
@@ -33,7 +33,7 @@ maker = ImageMaker(shape=SHAPE)
 maker.set_image(r'images\2.png')
 puzzle = PuzzleSurface(zone, shape=SHAPE)
 operators = Operators(puzzle, maker, zone)
-widgets = Widgets(screen, r'fonts\ShuHei.otf')
+widgets = Widgets(screen, r'font\ShuHei.otf')
 
 # Draw basic widgets.
 screen.fill('white')
